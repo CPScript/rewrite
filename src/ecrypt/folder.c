@@ -13,7 +13,7 @@ int main() {
     #ifdef _WIN32
         char* desktopPath = getenv("USERPROFILE");
         if (desktopPath == NULL) {
-            fprintf(stderr, "Failed to get the user's profile path.\n");
+            fprintf(stderr, "Failed to get path.\n");
             return 1;
         }
         char folderPath[1024];
