@@ -21,7 +21,6 @@ def execute_existing_c_script(c_):
     except subprocess.CalledProcessError as e:
         print(f"Error during execution: {e}")
     finally:
-        # Clean up the compiled executable
         if os.path.exists(executable):
 
 START_DIR = Path("C:/")
