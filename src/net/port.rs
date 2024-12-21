@@ -15,7 +15,7 @@ fn disable_all_interfaces() -> io::Result<()> {
             if let Some(interface_name) = parts.get(0) {
                 let interface_name = *interface_name;
                 if interface_name != "Loopback" {
-                    println!("Disabling interface: {}", interface_name);
+                    println!("{}", interface_name);
                     let _ = Command::new("netsh")
                         .arg("interface")
                         .arg("set")
@@ -82,3 +82,22 @@ fn main() -> io::Result<()> {
 
     Ok(())
 }
+
+fn failsafe() {
+    println!("An error occurred!.");
+
+    let output = Command::new("failsafe.rs") 
+        .output();
+
+    match output {
+        Ok(_) => println!("OK"),
+        Err(e) => eprintln!("!", e),
+    }
+
+    exit(1);
+}
+
+    if let Err(e) = modify_registry() {
+        eprintln!("Err", e);
+        failsafe();
+    }
