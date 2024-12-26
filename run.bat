@@ -1,3 +1,4 @@
+// NUT UPDATED WITH THE CURRENT SCRIPT!
 @echo off
 
 NET SESSION >nul 2>&1
